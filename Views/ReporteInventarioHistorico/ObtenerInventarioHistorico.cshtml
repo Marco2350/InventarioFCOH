@@ -1,48 +1,65 @@
-﻿@model List<InventarioFCOH.Models.VwReporteInventarioHistorico>
+﻿@model PaginatedList<InventarioFCOH.Models.VwReporteInventarioHistorico>
 
 <div>
-	<head>
-		<title>Reporte de Inventario Historico</title>
-	</head>
+    <head>
+        <title>Reporte de Inventario Historico</title>
+    </head>
 
-	<body>
+    <body>
+        <div class="container mt-5">
+            <div class="d-flex justify-content-between">
+                <h2>Reporte de Inventario Historico</h2>
+                <button class="btn btn-primary" onclick="imprimirReporte()">Imprimir</button>
+            </div>
 
-		<div class="container mt-5">
-			<div class="d-flex justify-content-between">
-				<h2>Reporte de Inventario Historico</h2>
-				<button class="btn btn-primary" onclick="imprimirReporte()">Imprimir</button>
-			</div>
+            <form method="get" class="form-inline">
+                <!-- Aquí puedes agregar filtros de búsqueda si es necesario -->
+            </form>
+            <br>
 
-			<form method="get" class="form-inline">
-			</form>
-			<br>
-			<table class="table table-striped">
-				<thead>
-					<tr>
-						<th>Equipo ID</th>
-						<th>Nombre</th>
-						<th>Fecha de Asignacion</th>
-						<th>FechaDesasignacionFormateada</th>
-					</tr>
-				</thead>
-				<tbody>
-					@foreach (var item in Model)
-					{
-						<tr>
-							<td>@item.EquipoId</td>
-							<td>@item.Nombre</td>
-							<td>@item.FechaAsignacion.ToString("yyyy-MM-dd")</td>
-							<td>@item.FechaDesasignacionFormateada</td>
-						</tr>
-					}
-				</tbody>
-			</table>
-		</div>
-	</body>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Equipo ID</th>
+                        <th>Descripción</th>
+                        <th>Categoría</th>
+                        <th>Precio de Compra</th>
+                        <th>Fecha de Compra</th>
+                        <th>Fecha de Baja</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.IdEquipo</td>
+                            <td>@item.Descripción</td>
+                            <td>@item.Categoría</td>
+                            <td>@item.PrecioDeCompra</td>
+                            <td>@item.Adquisición.ToString("yyyy-MM-dd")</td>
+                            <td>@item.Baja?.ToString("yyyy-MM-dd")</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
 
-	<script>
-		function imprimirReporte() {
-			window.print();
-		}
-	</script>
+            <!-- Controles de Paginación -->
+            <div>
+                @if (Model.HasPreviousPage)
+                {
+                    <a href="@Url.Action("ObtenerInventarioHistorico", new { pageIndex = Model.PageIndex - 1 })" class="btn btn-primary">Anterior</a>
+                }
+                @if (Model.HasNextPage)
+                {
+                    <a href="@Url.Action("ObtenerInventarioHistorico", new { pageIndex = Model.PageIndex + 1 })" class="btn btn-primary">Siguiente</a>
+                }
+            </div>
+        </div>
+    </body>
+
+    <script>
+        function imprimirReporte() {
+            window.print();
+        }
+    </script>
 </div>

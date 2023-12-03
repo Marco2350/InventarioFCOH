@@ -1,0 +1,21 @@
+﻿@media screen {
+	.print-header {
+		display: none; /* Oculta el encabezado en la vista normal */
+	}
+}
+
+@media print {
+	.print-header {
+		display: block; /* Muestra el encabezado en la impresión */
+		text-align: center; /* Centra el contenido del encabezado */
+	}
+
+		.print-header img {
+			max-width: 100px; /* Ajusta el tamaño del logo para la impresión */
+		}
+
+	body {
+		margin: 0;
+		padding: 0;
+	}
+}

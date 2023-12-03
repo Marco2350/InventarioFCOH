@@ -26,7 +26,7 @@ namespace InventarioFCOH.Models.Controllers
             if (equipoId.HasValue)
             {
                 historicoNivelUsuario = historicoNivelUsuario
-                    .Where(e => e.EquipoId == equipoId);
+                    .Where(e => e.CodigoEquipo == equipoId.ToString());
             }
 
             var historicoNivelUsuarioList = historicoNivelUsuario.ToList();

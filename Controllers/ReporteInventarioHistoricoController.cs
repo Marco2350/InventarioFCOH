@@ -11,10 +11,12 @@ namespace InventarioFCOH.Models.Controllers
         {
             _context = context;
         }
-        public IActionResult ObtenerInventarioHistorico()
-        {
-            var reporteGeneral = _context.VwReporteInventarioHistoricos.ToList();
-            return View(reporteGeneral);
-        }
-    }
+		public IActionResult ObtenerInventarioHistorico(int pageIndex = 1, int pageSize = 5)
+		{
+			var query = _context.VwReporteInventarioHistoricos.AsQueryable();
+			var paginatedList = PaginatedList<VwReporteInventarioHistorico>.Create(query, pageIndex, pageSize);
+
+			return View(paginatedList);
+		}
+	}
 }

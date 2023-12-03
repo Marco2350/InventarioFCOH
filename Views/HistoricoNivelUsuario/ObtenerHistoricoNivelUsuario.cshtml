@@ -49,11 +49,11 @@
 					@foreach (var item in Model)
 					{
 						<tr>
-							<td>@item.UsuarioId</td>
+							<td>@item.CodigoEquipo</td>
 							<td>@item.NombreUsuario</td>
-							<td>@item.EquipoId</td>
+							<td>@item.CodigoEquipo</td>
 							<td>@item.NombreEquipo</td>
-							<td>@item.FechaInicio.ToString("yyyy-MM-dd")</td>
+							<td>@(item.FechaInicio.HasValue ? item.FechaInicio.Value.ToString("yyyy-MM-dd") : "")</td>
 							<td>@(item.FechaFinal.HasValue ? item.FechaFinal.Value.ToString("yyyy-MM-dd") : "")</td>
 						</tr>
 					}

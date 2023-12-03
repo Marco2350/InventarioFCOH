@@ -1,0 +1,42 @@
+﻿/* Sidebar Styles */
+
+#sidebar-wrapper {
+    min-height: 100vh;
+    width: 250px;
+    margin-left: -250px;
+    transition: margin 0.25s ease-out;
+    background-color: #007bff; /* Azul estándar, cambia este valor según prefieras */
+}
+
+    #sidebar-wrapper .sidebar-heading {
+        padding: 0.875rem 1.25rem;
+        font-size: 1.5rem;
+        color: white; /* Texto blanco para mejor contraste */
+    }
+
+    #sidebar-wrapper .list-group-item {
+        color: white; /* Texto blanco para mejor contraste */
+    }
+
+/* Ajustes cuando el sidebar está expandido */
+#wrapper.toggled #sidebar-wrapper {
+    margin-left: 0;
+}
+
+/* Ajustes de contenido cuando el sidebar está expandido/cerrado */
+@media (min-width: 768px) {
+    #wrapper {
+        padding-left: 250px;
+    }
+
+        #wrapper.toggled #sidebar-wrapper {
+            margin-left: -250px;
+        }
+}
+
+/* Estilos para el botón de toggle del menú */
+#menu-toggle {
+    cursor: pointer;
+    padding: 0.5rem;
+    margin-left: 1rem;
+}

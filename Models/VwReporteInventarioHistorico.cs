@@ -5,9 +5,11 @@ namespace InventarioFCOH.Models
 {
     public partial class VwReporteInventarioHistorico
     {
-        public int EquipoId { get; set; }
-        public string Nombre { get; set; } = null!;
-        public DateTime FechaAsignacion { get; set; }
-        public string? FechaDesasignacionFormateada { get; set; }
+        public string IdEquipo { get; set; }
+        public string? Descripción { get; set; }
+        public string Categoría { get; set; } = null!;
+        public string PrecioDeCompra { get; set; } = null!;
+        public DateTime Adquisición { get; set; }
+        public DateTime? Baja { get; set; }
     }
 }

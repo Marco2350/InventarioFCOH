@@ -908,14 +908,16 @@ namespace InventarioFCOH.Models
 
                 entity.ToView("vw_HistoricalReport", "inventario");
 
-                entity.Property(e => e.EquipoId).HasColumnName("equipoID");
+                entity.Property(e => e.CodigoEquipo)
+                    .HasMaxLength(25)
+                    .HasColumnName("codigoEquipo");
 
                 entity.Property(e => e.FechaFinal)
-                    .HasColumnType("datetime")
+                    .HasColumnType("date")
                     .HasColumnName("fechaFinal");
 
                 entity.Property(e => e.FechaInicio)
-                    .HasColumnType("datetime")
+                    .HasColumnType("date")
                     .HasColumnName("fechaInicio");
 
                 entity.Property(e => e.NombreEquipo)
@@ -925,8 +927,6 @@ namespace InventarioFCOH.Models
                 entity.Property(e => e.NombreUsuario)
                     .HasMaxLength(100)
                     .HasColumnName("nombreUsuario");
-
-                entity.Property(e => e.UsuarioId).HasColumnName("usuarioID");
             });
 
             modelBuilder.Entity<VwReporteEquipoTotalCategoriaEstado>(entity =>
@@ -961,9 +961,7 @@ namespace InventarioFCOH.Models
 
                 entity.ToView("vw_reporteEquipoTotalPorCategoriaEstado", "inventario");
 
-                entity.Property(e => e.Descripcion)
-                    .HasMaxLength(50)
-                    .HasColumnName("descripcion");
+                entity.Property(e => e.Descripcion).HasMaxLength(50).HasColumnName("descripcion");
 
                 entity.Property(e => e.EnReparacion).HasColumnName("En reparacion");
 
@@ -972,48 +970,48 @@ namespace InventarioFCOH.Models
                 entity.Property(e => e.TotalExistencias).HasColumnName("Total Existencias");
             });
 
-            modelBuilder.Entity<VwReporteGeneralInventario>(entity =>
-            {
-                entity.HasNoKey();
+			modelBuilder.Entity<VwReporteGeneralInventario>(entity =>
+			{
+				entity.HasNoKey();
 
-                entity.ToView("vw_reporteGeneralInventario", "inventario");
+				entity.ToView("vw_reporteGeneralInventario", "inventario");
 
-                entity.Property(e => e.DescripcionGeneral)
-                    .HasMaxLength(150)
-                    .HasColumnName("descripcionGeneral");
+				entity.Property(e => e.Categoría).HasMaxLength(50);
 
-                entity.Property(e => e.EquipoId)
-                    .ValueGeneratedOnAdd()
-                    .HasColumnName("equipoID");
+				entity.Property(e => e.Descripción).HasMaxLength(150);
 
-                entity.Property(e => e.FechaDeCompra)
-                    .HasMaxLength(4000)
-                    .HasColumnName("Fecha de compra");
+				entity.Property(e => e.Estado).HasMaxLength(50);
 
-                entity.Property(e => e.PrecioDeCompra)
-                    .HasMaxLength(4000)
-                    .HasColumnName("Precio de compra");
-            });
+				entity.Property(e => e.FechaDeCompra)
+					.HasColumnType("date")
+					.HasColumnName("Fecha de Compra");
 
-            modelBuilder.Entity<VwReporteInventarioHistorico>(entity =>
+				entity.Property(e => e.IdEquipo).HasColumnName("ID Equipo");
+
+				entity.Property(e => e.PrecioDeCompra)
+					.HasMaxLength(4000)
+					.HasColumnName("Precio de Compra");
+			});
+
+			modelBuilder.Entity<VwReporteInventarioHistorico>(entity =>
             {
                 entity.HasNoKey();
 
                 entity.ToView("vw_reporteInventarioHistorico", "inventario");
 
-                entity.Property(e => e.EquipoId).HasColumnName("equipoID");
+                entity.Property(e => e.Adquisición).HasColumnType("date");
 
-                entity.Property(e => e.FechaAsignacion)
-                    .HasColumnType("datetime")
-                    .HasColumnName("fechaAsignacion");
+                entity.Property(e => e.Baja).HasColumnType("date");
 
-                entity.Property(e => e.FechaDesasignacionFormateada)
+                entity.Property(e => e.Categoría).HasMaxLength(50);
+
+                entity.Property(e => e.Descripción).HasMaxLength(150);
+
+                entity.Property(e => e.IdEquipo).HasColumnName("ID Equipo");
+
+                entity.Property(e => e.PrecioDeCompra)
                     .HasMaxLength(4000)
-                    .HasColumnName("fechaDesasignacionFormateada");
-
-                entity.Property(e => e.Nombre)
-                    .HasMaxLength(100)
-                    .HasColumnName("nombre");
+                    .HasColumnName("Precio de Compra");
             });
 
             OnModelCreatingPartial(modelBuilder);
