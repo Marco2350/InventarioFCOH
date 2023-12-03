@@ -5,7 +5,7 @@ namespace InventarioFCOH.Models
 {
     public partial class VwReporteGeneralInventario
     {
-        public int EquipoId { get; set; }
+        public string EquipoId { get; set; }
         public string? DescripcionGeneral { get; set; }
         public string PrecioDeCompra { get; set; } = null!;
         public string? FechaDeCompra { get; set; }

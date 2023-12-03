@@ -23,6 +23,7 @@ namespace InventarioFCOH.Models
         public int? ProveedorId { get; set; }
         public string? DescripcionGeneral { get; set; }
         public string? Serie { get; set; }
+        public string CodigoEquipo { get; set; }
 
         public virtual Categoria Categoria { get; set; } = null!;
         public virtual Estado Estado { get; set; } = null!;
