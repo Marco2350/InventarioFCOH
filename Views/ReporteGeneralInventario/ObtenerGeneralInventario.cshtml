@@ -1,0 +1,46 @@
+﻿@model List<InventarioFCOH.Models.VwReporteGeneralInventario>
+
+<div>
+	<head>
+		<title>Reporte de Inventario General</title>
+	</head>
+
+	<body>
+
+		<div class="container mt-5">
+			<div class="d-flex justify-content-between">
+				<h2>Reporte de Inventario General</h2>
+				<button class="btn btn-primary" onclick="imprimirReporte()">Imprimir</button>
+			</div>
+
+			<form method="get" class="form-inline">
+			</form>
+			<br>
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>Equipo ID</th>
+						<th>Descipcion</th>
+						<th>Precio de Compra</th>
+					</tr>
+				</thead>
+				<tbody>
+					@foreach (var item in Model)
+					{
+						<tr>
+							<td>@item.EquipoId</td>
+							<td>@item.DescripcionGeneral</td>
+							<td>@item.PrecioDeCompra</td>
+						</tr>
+					}
+				</tbody>
+			</table>
+		</div>
+	</body>
+
+	<script>
+		function imprimirReporte() {
+			window.print();
+		}
+	</script>
+</div>

@@ -1,0 +1,67 @@
+﻿@model List<InventarioFCOH.Models.VwDamagedEquipmentReport>
+
+<div>
+	<head>
+		<title>Equipo Dañado o Reparación</title>
+	</head>
+
+	<body>
+
+		<div class="container mt-5">
+			<div class="d-flex justify-content-between">
+				<h2>Equipo Dañado o Reparación</h2>
+				<button class="btn btn-primary" onclick="imprimirReporte()">Imprimir</button>
+			</div>
+
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>Equipo ID</th>
+						<th>Categoria de Equipo</th>
+						<th>Estado</th>
+						<th>Fecha de Reporte</th>
+						<th>Fecha de Reparacion</th>
+						<th>Descripcion</th>
+						<th>Fecha Mantenimiento</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>1</td>
+						<td>Computadora</td>
+						<td>En reparacion</td>
+						<td>2023-11-21</td>
+						<td>2023-11-22</td>
+						<td>Formatear</td>
+						<td>2023-11-23</td>
+					</tr>
+					<tr>
+						<td>2</td>
+						<td>Computadora</td>
+						<td>En reparacion</td>
+						<td>2023-11-20</td>
+						<td>2023-11-25</td>
+						<td>Pasta termica</td>
+						<td>2023-11-26</td>
+						>
+					<tr>
+						<td>3</td>
+						<td>Computadora</td>
+						<td>Dañado</td>
+						<td>2023-11-19</td>
+						<td>2023-11-28</td>
+						<td>Cambio de pantalla</td>
+						<td>2023-11-29</td>
+					</tr>
+					<!-- Agrega más filas según sea necesario -->
+				</tbody>
+			</table>
+		</div>
+	</body>
+
+	<script>
+		function imprimirReporte() {
+			window.print();
+		}
+	</script>
+</div>

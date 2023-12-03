@@ -1,0 +1,41 @@
+﻿@model List<InventarioFCOH.Models.VwReporteEquipoTotalPorCategoriaEstado>
+
+@{
+    ViewData["Title"] = "Reporte de Equipo por Categoría";
+}
+
+<div class="container mt-5">
+    <div class="d-flex justify-content-between">
+        <h2>Reporte de Equipo por Categoría y Estado</h2>
+        <button class="btn btn-primary" onclick="imprimirReporte()">Imprimir</button>
+    </div>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Descripción</th>
+                <th>Disponible</th>
+                <th>En Reparación</th>
+                <th>Fuera de Servicio</th>
+                <th>Total Existencias</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Descripcion</td>
+                    <td>@item.Disponible</td>
+                    <td>@item.EnReparacion</td>
+                    <td>@item.FueraDeServicio</td>
+                    <td>@item.TotalExistencias</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<script>
+    function imprimirReporte() {
+        window.print();
+    }
+</script>

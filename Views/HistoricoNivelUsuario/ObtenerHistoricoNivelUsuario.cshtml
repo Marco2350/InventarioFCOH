@@ -1,0 +1,70 @@
+﻿@model List<InventarioFCOH.Models.VwHistoricalReport>
+
+<div>
+	<head>
+		<title>Reporte Historico a Nivel de Usuario</title>
+	</head>
+
+	<body>
+
+		<div class="container mt-5">
+			<div class="d-flex justify-content-between">
+				<h2>Historico Nivel Usuario</h2>
+				<button class="btn btn-primary" onclick="imprimirReporte()">Imprimir</button>
+			</div>
+
+			<form method="get" class="form-inline">
+				<div class="row">
+					<div class="col-md-4">
+						<div class="form-group mr-2">
+							<label for="nombreUsuario" class="mr-2">Nombre de Usuario:</label>
+							<input type="text" name="nombreUsuario" class="form-control" />
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="form-group mr-2">
+							<label for="equipoId" class="mr-2">Equipo ID:</label>
+							<input type="number" name="equipoId" class="form-control" />
+						</div>
+					</div>
+				</div>
+				<br>
+				<div class="col-md-2">
+					<button type="submit" class="btn btn-primary">Filtrar</button>
+				</div>
+			</form>
+			<br>
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>Usuario ID</th>
+						<th>Nombre Usuario</th>
+						<th>Equipo ID</th>
+						<th>Equipo</th>
+						<th>Fecha Inicio</th>
+						<th>Fecha Final</th>
+					</tr>
+				</thead>
+				<tbody>
+					@foreach (var item in Model)
+					{
+						<tr>
+							<td>@item.UsuarioId</td>
+							<td>@item.NombreUsuario</td>
+							<td>@item.EquipoId</td>
+							<td>@item.NombreEquipo</td>
+							<td>@item.FechaInicio.ToString("yyyy-MM-dd")</td>
+							<td>@(item.FechaFinal.HasValue ? item.FechaFinal.Value.ToString("yyyy-MM-dd") : "")</td>
+						</tr>
+					}
+				</tbody>
+			</table>
+		</div>
+	</body>
+
+	<script>
+		function imprimirReporte() {
+			window.print();
+		}
+	</script>
+</div>
